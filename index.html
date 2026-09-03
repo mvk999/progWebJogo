@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Code Snake: um jogo Snake com identidade visual de programação.">
+  <title>Code Snake</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main class="app-shell">
+    <section id="menu-screen" class="screen screen--active" aria-labelledby="menu-title">
+      <h1 id="menu-title">Code Snake</h1>
+      <p class="intro">Controle a cobra, colete os itens e tente fazer a maior pontuação possível.</p>
+
+      <div class="info-grid">
+        <article class="info-card">
+          <h2>Como jogar</h2>
+          <p>Use as setas ou as teclas W, A, S e D para mover a cobra.</p>
+        </article>
+        <article class="info-card">
+          <h2>Regras</h2>
+          <p>Colete <span class="code-token">&lt;/&gt;</span> para ganhar 10 pontos e crescer.</p>
+          <p>Evite bater nas paredes ou no próprio corpo.</p>
+        </article>
+      </div>
+
+      <button id="start-button" class="button button--primary" type="button">Iniciar Jogo</button>
+    </section>
+
+    <section id="game-screen" class="screen" aria-labelledby="game-title">
+      <div class="game-header">
+        <div>
+          <h1 id="game-title">Code Snake</h1>
+        </div>
+        <div class="score-panel" aria-live="polite">
+          <div><span>Pontuação</span><strong id="score">0</strong></div>
+          <div><span>Recorde</span><strong id="high-score">0</strong></div>
+          <div><span>Nível</span><strong id="level">1</strong></div>
+        </div>
+      </div>
+
+      <div class="board-frame">
+        <canvas id="game-board" width="600" height="600" aria-label="Tabuleiro do jogo Code Snake"></canvas>
+      </div>
+      <p class="game-hint">Controles: Setas ou W/A/S/D | Espaço: Pausar</p>
+    </section>
+
+    <section id="game-over-screen" class="screen" aria-labelledby="game-over-title">
+      <h1 id="game-over-title">Game Over</h1>
+      <p class="intro">A cobra colidiu.</p>
+      <div class="final-score" aria-live="polite">
+        <span>Pontuação final</span>
+        <strong id="final-score">0</strong>
+        <span>Recorde da sessão: <b id="final-high-score">0</b></span>
+      </div>
+      <div class="button-group">
+        <button id="restart-button" class="button button--primary" type="button">Jogar Novamente</button>
+        <button id="menu-button" class="button button--secondary" type="button">Voltar ao Menu</button>
+      </div>
+    </section>
+  </main>
+  <script src="js/game.js"></script>
+</body>
+</html>
