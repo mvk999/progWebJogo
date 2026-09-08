@@ -1,11 +1,11 @@
-# Campo Minado 💣
+# Code Snake 🐍
 
 Projeto desenvolvido para a atividade da disciplina GAC116 - Programação Web.
 
 ```json
 {
-  "nome": "Campo Minado",
-  "descricao": "Jogo de Campo Minado desenvolvido com HTML, CSS e JavaScript puro.",
+  "nome": "Code Snake",
+  "descricao": "Jogo de cobrinha desenvolvido com HTML, CSS e JavaScript puro.",
   "autores": "Marcos Vinícius Pereira",
   "turma": "14B"
 }
@@ -13,38 +13,36 @@ Projeto desenvolvido para a atividade da disciplina GAC116 - Programação Web.
 
 ## 📝 Descrição
 
-Uma versão simples e responsiva do clássico jogo Campo Minado. O tabuleiro possui uma grade de 10 × 10 células com 15 minas distribuídas aleatoriamente a cada partida.
+Uma versão simples do clássico jogo Snake. O jogador controla a minhoca pelo tabuleiro e deve comer os itens para fazê-la crescer.
 
 ## 🎯 Objetivo
 
-O objetivo é revelar todas as células seguras do tabuleiro, sem clicar em nenhuma das minas escondidas.
+O objetivo é fazer a minhoca crescer o máximo possível sem bater nas paredes ou no próprio corpo.
 
 ## 🕹️ Como Jogar
 
-- **Clique esquerdo:** revela a célula selecionada.
-- **Clique direito:** coloca ou remove uma bandeira 🚩 para marcar uma possível mina.
-- **Números:** mostram a quantidade de minas nas oito células vizinhas.
-- **Abertura automática:** células sem minas vizinhas revelam automaticamente as células seguras próximas.
+- Use as setas do teclado ou as teclas W, A, S e D para movimentar a minhoca.
+- Coma os itens amarelos para aumentar o tamanho da minhoca.
+- Pressione a tecla Espaço para pausar ou continuar o jogo.
 
 ## 📜 Regras Principais
 
-- O tabuleiro possui 100 células e 15 minas.
-- As minas são geradas aleatoriamente a cada nova partida.
-- Se o jogador clicar em uma mina, o jogo termina e todas as minas são reveladas.
-- O jogador vence ao revelar todas as células seguras.
-- O jogo possui um cronômetro para registrar o tempo da partida.
+- O item aparece em uma posição aleatória do tabuleiro.
+- Ao comer um item, a minhoca cresce.
+- Se a minhoca bater em uma parede ou no próprio corpo, a partida termina.
+- É possível começar uma nova partida depois do fim do jogo.
 
 ## 🛠️ Tecnologias Utilizadas
 
 - **HTML5:** estrutura das telas e da interface.
-- **CSS3:** estilização, Flexbox, CSS Grid e responsividade.
-- **JavaScript:** lógica do tabuleiro, matriz 2D, abertura de células e cronômetro.
+- **CSS3:** estilização e organização da página.
+- **JavaScript:** movimentação, crescimento, itens e colisões.
 
 ## 🌐 GitHub Pages
 
 Link da versão publicada:
 
-<https://arthurdp78.github.io/CampoMinado_ProgWeb/>
+O projeto pode ser executado abrindo o arquivo `index.html` no navegador.
 
 ## 👤 Informações do Aluno
 
