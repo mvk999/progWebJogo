@@ -42,7 +42,7 @@ O objetivo é fazer a minhoca crescer o máximo possível sem bater nas paredes 
 
 Link da versão publicada:
 
-O projeto pode ser executado abrindo o arquivo `index.html` no navegador.
+<https://mvk999.github.io/progWebJogo/>
 
 ## 👤 Informações do Aluno
 
