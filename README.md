@@ -8,8 +8,7 @@ Code Snake é uma versão do clássico Snake com identidade visual inspirada em 
 
 - Use as setas para cima, baixo, esquerda e direita.
 - Também é possível usar W, A, S e D.
-- Colete os tokens `</>` para aumentar a cobra e ganhar 10 pontos.
-- A velocidade aumenta a cada 50 pontos e o nível atual aparece no placar.
+- Colete os tokens `</>` para a cobra crescer.
 - A partida termina ao bater em uma parede ou no próprio corpo.
 - Use **Jogar Novamente** para reiniciar todos os dados da partida.
 - Durante o jogo, a tecla Espaço pausa ou retoma a movimentação.

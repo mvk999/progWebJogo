@@ -1,11 +1,9 @@
 'use strict';
 
-const STATES = Object.freeze({ MENU: 'MENU', PLAYING: 'PLAYING', GAME_OVER: 'GAME_OVER' });
+const STATES = { MENU: 'MENU', PLAYING: 'PLAYING', GAME_OVER: 'GAME_OVER' };
 const BOARD_SIZE = 20;
 const CELL_SIZE = 600 / BOARD_SIZE;
-const POINTS_PER_FOOD = 10;
-const INITIAL_DELAY = 170;
-const MIN_DELAY = 75;
+const MOVE_DELAY = 170;
 
 const board = document.querySelector('#game-board');
 const context = board.getContext('2d');
@@ -14,20 +12,11 @@ const screens = {
   game: document.querySelector('#game-screen'),
   gameOver: document.querySelector('#game-over-screen')
 };
-const scoreElement = document.querySelector('#score');
-const highScoreElement = document.querySelector('#high-score');
-const levelElement = document.querySelector('#level');
-const finalScoreElement = document.querySelector('#final-score');
-const finalHighScoreElement = document.querySelector('#final-high-score');
-
 let state = STATES.MENU;
 let snake = [];
 let food = { x: 0, y: 0 };
 let direction = { x: 1, y: 0 };
 let nextDirection = { x: 1, y: 0 };
-let score = 0;
-let highScore = 0;
-let level = 1;
 let gameTimer = null;
 let isPaused = false;
 
@@ -41,11 +30,8 @@ function resetGame() {
   snake = [{ x: 10, y: 10 }, { x: 9, y: 10 }, { x: 8, y: 10 }];
   direction = { x: 1, y: 0 };
   nextDirection = { x: 1, y: 0 };
-  score = 0;
-  level = 1;
   isPaused = false;
   food = generateFood();
-  updateScoreboard();
   drawGame();
 }
 
@@ -58,7 +44,7 @@ function startGame() {
 
 function startGameLoop() {
   stopGameLoop();
-  gameTimer = setInterval(updateGame, getMoveDelay());
+  gameTimer = setInterval(updateGame, MOVE_DELAY);
 }
 
 function stopGameLoop() {
@@ -66,10 +52,6 @@ function stopGameLoop() {
     clearInterval(gameTimer);
     gameTimer = null;
   }
-}
-
-function getMoveDelay() {
-  return Math.max(MIN_DELAY, INITIAL_DELAY - (level - 1) * 12);
 }
 
 function updateGame() {
@@ -85,12 +67,7 @@ function updateGame() {
 
   snake.unshift(newHead);
   if (ateFood) {
-    score += POINTS_PER_FOOD;
-    level = Math.floor(score / 50) + 1;
-    highScore = Math.max(highScore, score);
     food = generateFood();
-    updateScoreboard();
-    startGameLoop();
   } else {
     snake.pop();
   }
@@ -113,7 +90,7 @@ function generateFood() {
 }
 
 function drawGame() {
-  context.fillStyle = '#071310';
+  context.fillStyle = '#e8f3e9';
   context.fillRect(0, 0, board.width, board.height);
   drawGrid();
   drawFood();
@@ -121,14 +98,17 @@ function drawGame() {
 }
 
 function drawGrid() {
-  context.strokeStyle = 'rgba(84, 242, 154, 0.07)';
+  context.strokeStyle = '#c8ddca';
   context.lineWidth = 1;
+
   for (let position = 0; position <= BOARD_SIZE; position += 1) {
     const pixel = position * CELL_SIZE;
+
     context.beginPath();
     context.moveTo(pixel, 0);
     context.lineTo(pixel, board.height);
     context.stroke();
+
     context.beginPath();
     context.moveTo(0, pixel);
     context.lineTo(board.width, pixel);
@@ -138,45 +118,23 @@ function drawGrid() {
 
 function drawSnakePart(part, isHead) {
   const padding = 2;
-  context.fillStyle = isHead ? '#5de4e8' : '#54f29a';
+  context.fillStyle = isHead ? '#1f6b35' : '#4cae63';
   context.fillRect(part.x * CELL_SIZE + padding, part.y * CELL_SIZE + padding, CELL_SIZE - padding * 2, CELL_SIZE - padding * 2);
-  if (isHead) {
-    context.fillStyle = '#071310';
-    context.font = 'bold 13px monospace';
-    context.textAlign = 'center';
-    context.textBaseline = 'middle';
-    context.fillText(getHeadSymbol(), part.x * CELL_SIZE + CELL_SIZE / 2, part.y * CELL_SIZE + CELL_SIZE / 2);
-  }
-}
-
-function getHeadSymbol() {
-  if (direction.x === 1) return '>';
-  if (direction.x === -1) return '<';
-  if (direction.y === -1) return '^';
-  return 'v';
 }
 
 function drawFood() {
   context.fillStyle = '#ffcf5d';
   context.fillRect(food.x * CELL_SIZE + 2, food.y * CELL_SIZE + 2, CELL_SIZE - 4, CELL_SIZE - 4);
-  context.fillStyle = '#352b0d';
-  context.font = 'bold 11px monospace';
+  context.fillStyle = '#493a00';
+  context.font = 'bold 11px Arial';
   context.textAlign = 'center';
   context.textBaseline = 'middle';
   context.fillText('</>', food.x * CELL_SIZE + CELL_SIZE / 2, food.y * CELL_SIZE + CELL_SIZE / 2);
 }
 
-function updateScoreboard() {
-  scoreElement.textContent = score;
-  highScoreElement.textContent = highScore;
-  levelElement.textContent = level;
-}
-
 function endGame() {
   stopGameLoop();
   state = STATES.GAME_OVER;
-  finalScoreElement.textContent = score;
-  finalHighScoreElement.textContent = highScore;
   showScreen(screens.gameOver);
 }
 
